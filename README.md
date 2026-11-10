@@ -33,3 +33,4 @@ curl 'https://europe-west6-tcs-digitalbackend.cloudfunctions.net/benzinGetStatio
 
 
   
+Currently there are 4 stations incoporated
