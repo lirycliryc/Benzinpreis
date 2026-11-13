@@ -8,6 +8,7 @@ stations = [
     ("COOP Arlesheim", "wVmt2ZXP7OsGmm3jDSl1"),
     ("AVIA Dornach", "WA8zY4mRudc4jOPZCHZR"),
     ("BP Dornach", "qduhc2wSnbHpbQ7jngis"),
+    ("RuediRüssel Reihnach", "gcDZMaISP6nHAOtTL40v"),
     ("RuediRüssel Muttenz", "HFCfbbLXs2LFa9TPTJlT"),
     ("Scall Tankstelle Basel", "Ka6a3C2cR5VEohOc5xa5"),
 ]
