@@ -14,12 +14,22 @@ stations = [
 ]
 
 today = date.today().strftime("%d.%m.%Y")
+results = []
 
-print(f"{'Datum':<12}{'Ort':<22}{'Preis':<22}")
-print("-" * 56)
+with requests.Session() as session:
+    for name, station_id in stations:
+        try:
+            r = session.post(url, json={"id": station_id}, headers=headers, timeout=10)
+            r.raise_for_status()
+            price = float(r.json()["fuelCollection"]["SP95"]["displayPrice"])
+            results.append((name, price))
+        except (requests.RequestException, KeyError, TypeError, ValueError) as e:
+            results.append((name, None))
 
-for name, station_id in stations:
-    r = requests.post(url, json={"id": station_id}, headers=headers)
-    price = r.json()["fuelCollection"]["SP95"]["displayPrice"]
-    print(f"{today:<12}{name:<22}{price} Sfr")
+results.sort(key=lambda x: x[1] if x[1] is not None else float("inf"))
 
+print(f"{'Datum':<12}{'Ort':<24}{'Preis':<10}")
+print("-" * 46)
+for name, price in results:
+    display = f"{price:.2f} Sfr" if price is not None else "n/a"
+    print(f"{today:<12}{name:<24}{display}")
